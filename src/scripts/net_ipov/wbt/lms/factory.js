@@ -1,21 +1,22 @@
+/* 
+Copyright (C) 2011 iPOV.net
+Author: Robert Sanders (robert.sanders@ipov.net)
+
+This program is free software; you can redistribute it and/or
+modify it under the terms of the GNU General Public License
+as published by the Free Software Foundation; either version 2
+of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+*/
 define(["jquery", "net_ipov/pubsub", "net_ipov/log", "net_ipov/wbt/status", "./persistor"], function ($, _pubsub, _log, _Status, Persistor) {
-
-	/*
-	 * Given an objective handler index, attempts to return the appropriate handler (possibly null).
-	 *
-	 * Note that for the base Persistor, only the NoLmsStrategyMixin really makes sense here
-	 * Initialize the objective strategy, note that this includes registering any listeners (if you want to override it).
-
-	var _getObjtvHandler = function (indx) {
-		var ds_s = this.config.get('ds.s', indx);
-
-		// Check out bounds
-		ds_s = (ds_s >= 0) ? ds_s : 0;
-		ds_s = (ds_s < _ObjtvHandlers.length) ? ds_s : 0;
-
-		return _ObjtvHandlers( ds_s )(this);
-	};
-	 */
 
 	/**
 	 * This simply defines the most basic initialize code
