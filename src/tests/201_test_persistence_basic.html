@@ -1,0 +1,31 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+      "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+  <head>
+    <link rel="stylesheet" href="assets/qunit.css" type="text/css"/>
+    <script type="text/javascript" src="../scripts/require-jquery.js"></script>
+    <script type="text/javascript" src="assets/qunit.js"></script>
+    <script type="text/javascript">
+    // TODO: initialize locale from amplify.store?
+    require.config({
+        baseUrl: "../scripts"
+    });
+
+    // don't start on domReady (may already be suppresed in newest qunit)
+    QUnit.config.autostart = false;
+    </script>
+    <script type="text/javascript">
+    // for longer test suites use require to load the test-suite and then just call Qunit.start()
+    require( ["./201_test_persistence_basic.js"], function () {
+    	QUnit.start();
+    });
+    </script>
+  </head>
+  <body>
+    <h1 id="qunit-header">Testing Client-side 'persistence' layer.</h1>
+    <h2 id="qunit-banner"></h2>
+    <h2 id="qunit-userAgent"></h2>
+    <ol id="qunit-tests">
+    </ol>
+  </body>
+</html>

@@ -1,0 +1,35 @@
+.dialog-outer {
+    position: absolute;
+    margin: auto 0;
+    width: 420px;
+    padding: 8px;
+    z-index: 1000;
+}
+
+.dialog-main {
+    background-color: #efefef;
+    border: 1px solid #889EA7;
+    font-size: 11px;
+    padding: 2px;
+}
+
+.dialog-main .dialog-body {
+    margin: 0 6px;
+}
+
+.dialog-main .dialog-title {
+    font-weight: bold;
+    padding-bottom: 4px;
+}
+
+.dialog-main .dialog-desc {
+    min-height: 72px;
+}
+
+.dialog-main .dialog-buttons-row {
+    height: 24px;
+}
+
+.dialog-main .dialog-buttons {
+    float: right;
+}

@@ -1,0 +1,41 @@
+/*!
+  This is the basic page CSS for the iPOV WBT Player
+  Copyright iPOV.net, 2011
+*/
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+body {
+    color: #000000;
+    background-color: #ffffff;
+    font-family: verdana,arial,helvetica,sans-serif;
+    overflow: auto;
+}
+
+#wbt-main {
+    position: relative;
+    min-height: 100%;
+    overflow:auto;
+}
+
+
+.centered {
+    text-align: center;
+}
+
+#wait-panel {
+    font-size: 24px;
+    color: #333333;
+}
+
+.loading-indicator {
+    background: url("ajax-loader2.gif") no-repeat 50% 2px;
+    min-height: 64px;
+    min-width: 64px;
+    font-size: 12pt;
+    font-weight: bold;
+    padding-top: 48px;
+}

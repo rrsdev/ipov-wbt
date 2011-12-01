@@ -1,0 +1,16 @@
+.breadcrumbs {
+    float: left;
+    width: 100%;
+    margin-top: 2px;
+}
+
+.breadcrumbs span.breadcrumb {
+    color: #333333;
+    background: url("../imgs/icon-link.gif") no-repeat scroll 0 4px transparent;
+    display: inline-block;
+    font-family: Arial,Geneva,Helvetica,sans-serif;
+    text-decoration: none;
+    line-height: 16px;
+    padding: 0 10px 0 11px;
+    cursor: pointer;
+}

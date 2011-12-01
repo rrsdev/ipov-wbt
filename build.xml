@@ -1,0 +1,52 @@
+<project name="ipov-wbt" default="list" basedir=".">
+
+	<property name="r.js" value="bin/r.js" />
+	<property name="rhino.jar" value="bin/rhino/js.jar" />
+	<property name="closure.jar" value="bin/closure/compiler.jar" />
+
+	<target name="list">
+		<description>List the files for the ipov-wbt site, this is mainly a way to create a scorm manifest entry.</description>
+
+		<fileset id="fileList" dir="C:/SiLearn-Content/LOA_Tooling/WBT/site/">
+		</fileset>
+
+		<pathconvert pathsep="&#xA;" dirsep="/" property="files" refid="fileList">
+			<map from="C:/SiLearn-Content/LOA_Tooling/WBT/site/" to=""/>
+		</pathconvert>
+
+		<echo>${files}</echo>
+	</target>
+
+    <!--
+    Note, as of 1.0.2  the following does not fully work, it fails on the 'text!' entries used in the themess -->
+	<target name="-optimize" description="Run 'r.js' on a build profile to combine and minify files.  Specify the build profile using 'requirejs.buildProfile'">
+        <java classname="org.mozilla.javascript.tools.shell.Main">
+            <classpath>
+                <pathelement location="${rhino.jar}" />
+                <pathelement location="${closure.jar}" />
+            </classpath>
+            <arg value="${r.js}"/>
+            <arg value="-o"/>
+            <arg value="${requirejs.buildProfile}"/>
+        </java>
+        <echo message="optimized ${requirejs.buildProfile}" />
+    </target>
+
+	<target name="build-main">
+	    <description>Build the main WBT 'Player' code, excluding the theme component.</description>
+		<antcall target="-optimize">
+            <param name="requirejs.buildProfile" value="build-profile-main.js" />
+        </antcall>
+	</target>
+
+	<!--
+	It seems that the main 'module' they have for building is to declare all modules in mode 'profile' so that you can then use cross module deps for include and exclude.
+	<target name="build-themes">
+        <description>Build the themes.</description>
+        <antcall target="-optimize">
+            <param name="requirejs.buildProfile" value="build-profile-themes.js" />
+        </antcall>
+    </target>
+    -->
+
+</project>

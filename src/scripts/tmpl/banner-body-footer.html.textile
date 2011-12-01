@@ -1,0 +1,19 @@
+h1. Template for banner-body-footer
+
+The 'banner-body-footer.html' template is designed to fill the entire <body> content
+
+This template has three main 'container' blocks (the following are the HTML id attributes):
+
+* banner-container
+** banner-content
+** banner-bottom
+* content-container
+** content-top
+** content-main
+** content-bottom
+* footer-container
+** footer-top
+** footer-content
+
+
+The most common use is to make the body 100% height, and setting the banner and footer to a fixed height and allowing the content to expand to fill the area.  With the proper CSS this means that the content-container will stretch to fill the remaining area.

@@ -1,0 +1,89 @@
+#banner-container {
+    position: relative;
+    height:79px
+}
+
+#banner-logo {
+    background: url("../imgs/logo.png") no-repeat scroll 0 0 transparent;
+    height: 72px;
+    left: 44px;
+    position: absolute;
+    top: 0;
+    width: 201px;
+    z-index: 10001;
+}
+
+.ie6 #banner-logo {
+    background-image: url("../imgs/logo.gif");
+}
+
+body #banner-content {
+    height: 79px;
+    color: #ffffff;
+    background: #252525 url("../imgs/header-banner-img.png") no-repeat;
+}
+
+#header-banner-area {
+    height: 79px;
+    overflow: hidden;
+    width: 989px;
+    z-index: 2;
+}
+
+#header-banner-img {
+    /*
+    background-image: ;
+    float: left;
+    height: 144px;
+    width: 638px;
+    */
+}
+#header-banner-txt {
+    height: 79px;
+    float:right;
+    padding: 0 1px 0 21px;
+    position: relative;
+    width: 390px;
+    z-index: 11;
+}
+
+/** inside the #header-banner-txt element, needed to keep the css styling correct across multiple browsers. */
+#header-text {
+    position: relative;
+    top: 21px;
+}
+
+/*-----------------
+  We are not done with the banner-content, and on to the banner bottom, which in this case contains a site-menu on the left and some other controls
+*/
+#banner-bottom {
+    clear: both;
+    height: 21px;
+    margin: 0;
+    padding: 1px 52px;
+    position: relative;
+    font-size: 11px;
+    background: url("../imgs/banner-bottom.png") repeat-x scroll 0 0;
+    color: #252525;
+}
+
+/* TODO: Consider adding 'x' image. */
+#wbtExit {
+    background: #ffffff url('../imgs/close-x.gif') no-repeat 100% 50%;
+    position: absolute;
+    top: 0;
+    right: 24px;
+    width: auto !important;
+    width: 100px;       /* for old IE */
+    height: 16px;
+    padding: 3px 24px 3px 12px;
+    cursor: pointer;
+}
+
+#wbtExitTxt {
+    display: inline-block;
+    color: #111111;
+    font-size: 11px;
+    font-weight: bold;
+}
+

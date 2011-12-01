@@ -1,0 +1,19 @@
+/* @import url("../theme/css/fixie.css");  */
+
+html {
+    height: 100%;
+    overflow: auto;
+}
+
+body {
+    height: 100%;
+    overflow: visible;
+}
+
+#wbt-main {
+    height: 100%;
+}
+
+.loading-indicator {
+    height: 64px;
+}

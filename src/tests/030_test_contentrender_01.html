@@ -1,0 +1,52 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+      "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+  <head>
+    <link rel="stylesheet" href="assets/qunit.css" type="text/css"/>
+    <script type="text/javascript" src="../scripts/require-jquery.js"></script>
+    <script type="text/javascript" src="assets/qunit.js"></script>
+    <script type="text/javascript">
+    // TODO: initialize locale from amplify.store?
+    require.config({
+        baseUrl: "../scripts"
+    });
+
+    // don't start on domReady (may already be suppresed in newest qunit)
+    QUnit.config.autostart = false;
+
+    // for longer test suites use require to load the test-suite and then just call Qunit.start()
+    require( ["net_ipov/wbt/cr"], function (renderer) {
+
+    	test("Null check", function() {
+    		QUnit.ok( null != renderer, "renderer module is non-null.");
+        });
+
+    	test("Content Renderer 2", function() {
+
+    		var topic = {
+				title: "Dummy Topic for testing video.",
+				id: '@test',
+				content: {
+					_type: "application/x-ipov-media-catalog",
+                    url: "catalog.xml",
+                    video: "002_product_categories.swf"
+				}
+    		};
+
+    		var r = renderer( topic, topic.content, null );
+    		QUnit.ok( null != r , "We should have a renderer for type 'application/x-ipov-media-catalog'.");
+    		QUnit.equals( r.render(), "<div><h2>CSP-1 Test Renderer</h2></div>", "Testing the dummy render() call.");
+
+        });
+    	QUnit.start();
+    });
+    </script>
+  </head>
+  <body>
+    <h1 id="qunit-header">QUnit example</h1>
+    <h2 id="qunit-banner"></h2>
+    <h2 id="qunit-userAgent"></h2>
+    <ol id="qunit-tests">
+    </ol>
+  </body>
+</html>

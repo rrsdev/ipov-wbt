@@ -1,0 +1,149 @@
+/*
+ * This is the main site-wide menu, in this case a drop-down style, although for Siemens it does not automatically close, you have to click a small 'x' icon in the menu.
+ * See also  ../tmpl/site_menu.html.
+ */
+#site-menu {
+    position: relative;
+    display: inline-block;
+    z-index: 1000;
+    height: 19px;
+    border-left: 1px solid transparent;
+    border-right: 1px solid transparent;
+}
+
+#site-menu-title {
+    padding: 3px 4px 0 2px;
+    cursor: pointer;
+}
+
+.menu-closed #site-menu-title.hover {
+    color: #333333;
+}
+
+/** This is the default position for the main menu. */
+.menu-item-icon.menu-01 {
+    background-position: 0 0;
+}
+
+.menu-closed #site-menu-title.hover .menu-item-icon.menu-01 {
+    background-position: 0 0;
+}
+
+.menu-open #site-menu-title .menu-item-icon.menu-01 {
+    background-position: 0 -9px;
+}
+
+#site-menu-container {
+    position: absolute;
+    visibility: hidden;
+    height: 0;
+    overflow: hidden;
+    top: 20px;
+    left: 0px;
+    z-index: -16;
+}
+
+#site-menu.menu-open #site-menu-container {
+    position: absolute;
+    z-index: 16000;
+    visibility: visible;
+    height: auto;
+    display: block;
+    overflow: visible;
+    background-color: #252525;
+    color: #ffffff;
+    padding: 0 8px 4px 8px;
+    border-bottom: 1px solid #FFFFFF;
+    border-left: 1px solid #FFFFFF;
+    border-right: 1px solid #FFFFFF;
+}
+
+#site-menu.menu-closed #site-menu-container {
+    visibility: hidden;
+    /* display: none; */
+}
+
+.menu-close-bar {
+    height: 26px;
+}
+
+.menu-close-bar .menu-close-button {
+    position: absolute;
+    right: -8px; /* the padding of the menu container element */
+    top: 0;
+    z-index: 100;
+    width: 20px;
+    height: 20px;
+    border-left: 2px solid #252525;
+    border-bottom: 2px solid #252525;
+    background: #252525 url("../imgs/close-x.gif") no-repeat top right;
+}
+
+
+/** This is typically an <li> element. */
+#site-menu .menu-item {
+    position: relative;
+    width: 100%;
+    display: block;
+    font-size: 12px;
+    white-space: nowrap;
+    word-wrap: break-word;
+}
+
+/* This is the base level */
+#site-menu ul.menu-items, #site-menu ul.menu-items li.menu-item {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border: 0 none;
+}
+
+#site-menu ul.menu-items li.menu-item {
+    border-top: 1px solid #889ea7;
+}
+
+#site-menu ul.menu-items li.menu-item:first-child {
+    border-top: 0 none transparent;
+}
+
+#site-menu li.menu-item .main-menu-entry {
+    height: 26px;
+    line-height: 24px;
+    cursor: pointer;
+    display: block;
+    position: relative;
+    padding-right: 40px;
+    vertical-align: middle;
+}
+
+#site-menu ul.menu-items ul.menu-items {
+    padding-left: 16px;
+}
+
+/** These are the triangular style icons used indicate active menus or links. */
+.menu-item-icon {
+    display: inline-block;
+    height: 9px;
+    width: 9px;
+    margin: 0 4px 0 0;
+    border: 0 none;
+    padding: 0;
+    background-image: url("../imgs/menu_icons_01_sprite.gif");
+    background-repeat: 0;
+    background-position: -9px 0;
+    overflow: hidden;
+    line-height: 2px;
+    font-size: 2px;
+}
+
+
+
+/** A topic that has child items */
+.menu-item-icon.menu-02.closed {}
+
+.menu-item-icon.menu-02.open {}
+
+/** A topic that has no children */
+.menu-item-icon.menu-03.closed {}
+
+.menu-item-icon.menu-03.open {}

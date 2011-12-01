@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="css/style.css" media="all" />
+    <!--[if IE 6]>
+    <link rel="stylesheet" type="text/css" href="css/fixie.css" media="all" />
+    <script language="javascript">
+        try {
+        window.__isIe6 = true;
+        } catch (ex) {}
+    </script>
+    <![endif]-->
+
+    <!-- If the browser doesn't already have a JSON object assigned, then do so now -->
+    <script>if ( typeof window.JSON === 'undefined' ) { document.write('<script src="scripts/json2.js"><\/script>'); }</script>
+
+    <!-- We want this available before we initialize RequireJS so we can so stuff like language restore...  -->
+    <script type="text/javascript">
+    // 'global' configuration for WBT parameters, supplimented by:  a) query-string params, b) site.cfg values.
+    net_ipov_cfg = { theme:'bbf'  };
+    </script>
+    <script src="scripts/amplify.store.js"></script>
+    <script src="scripts/_init.js"></script>
+    <script type="text/javascript" data-main="scripts/wbt-main" src="scripts/require-jquery.js"></script>
+</head>
+<body class="ipov-wbt min-banner">
+    <div id="wbt-main">
+
+        <div class="loading-indicator centered">
+        </div>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,12 @@
+<li class="menu-item">
+<div id="mmnu_{{=id}}" data-topic-id="{{=id}}" class="main-menu-entry">
+    <span class="menu-item-icon closed {{#if children}}menu-02{{else}}menu-03{{/if}}"></span>
+    <span class="main-menu-entry-title">{{=title}}</span>
+    <div class="topic-progress-indicator"><div></div></div>
+</div>
+{{#if children}}
+    <ul class="menu-items">
+    {{each children content="site_menu"}}
+    </ul>
+{{/if}}
+</li>

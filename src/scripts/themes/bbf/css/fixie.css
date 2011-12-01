@@ -1,0 +1,14 @@
+/* Rules to apply to IE 6 to fix some of its bad behaviors.  */
+
+ul.menu-items .menu-item-entry .menu-item-title {
+    display: inline-block;
+    height: 24px;
+    line-height: 24px;
+    margin: 0;
+    padding: 0;
+}
+
+#breadcrumb-container {
+    margin: 2px 0;
+    padding: 1px 3px;
+}

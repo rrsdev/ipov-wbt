@@ -1,0 +1,116 @@
+<?xml version="1.0" standalone="no" ?>
+
+<manifest identifier="com.scorm.golfsamples.contentpackaging.singlesco.12" version="1"
+         xmlns="http://www.imsproject.org/xsd/imscp_rootv1p1p2"
+         xmlns:adlcp="http://www.adlnet.org/xsd/adlcp_rootv1p2"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://www.imsproject.org/xsd/imscp_rootv1p1p2 imscp_rootv1p1p2.xsd
+                             http://www.imsglobal.org/xsd/imsmd_rootv1p2p1 imsmd_rootv1p2p1.xsd
+                             http://www.adlnet.org/xsd/adlcp_rootv1p2 adlcp_rootv1p2.xsd">
+
+    <metadata>
+        <schema>ADL SCORM</schema>
+        <schemaversion>1.2</schemaversion>
+    </metadata>
+
+    <!-- There is just one organization. The organization contains just one item.-->
+    <organizations default="org-927ddgx652hj61">
+        <organization identifier="org-927ddgx652hj61">
+            <title>SCORM Package Title</title>
+            <item identifier="item_1" identifierref="resource_1">
+                <title>SCO Package</title>
+            </item>
+        </organization>
+    </organizations>
+
+    <!-- The resources lists the actual file contents under a 'resource' container -->
+    <resources>
+        <resource identifier="resource_1" type="webcontent" adlcp:scormtype="sco" href="index.html">
+            <file href="index.html" />
+            <file href="css/ajax-loader2.gif" />
+            <file href="css/fixie.css" />
+            <file href="css/page.css" />
+            <file href="css/style.css" />
+            <file href="scripts/_init.js" />
+            <file href="scripts/amplify.store.js" />
+            <file href="scripts/csp-1.4.1.swf" />
+            <file href="scripts/domReady.js" />
+            <file href="scripts/expressInstall.swf" />
+            <file href="scripts/i18n.js" />
+            <file href="scripts/jquery.ba-bbq.js" />
+            <file href="scripts/json2.js" />
+            <file href="scripts/jsrender.js" />
+            <file href="scripts/net_ipov/cfg.js" />
+            <file href="scripts/net_ipov/csp/csp.js" />
+            <file href="scripts/net_ipov/log.js" />
+            <file href="scripts/net_ipov/mimetype.js" />
+            <file href="scripts/net_ipov/pubsub.js" />
+            <file href="scripts/net_ipov/wbt/Topic.js" />
+            <file href="scripts/net_ipov/wbt/cr.js" />
+            <file href="scripts/net_ipov/wbt/cr/csp-sc-1.js" />
+            <file href="scripts/net_ipov/wbt/cr/get.js" />
+            <file href="scripts/net_ipov/wbt/jsrender-tags.js" />
+            <file href="scripts/net_ipov/wbt/lms/factory.js" />
+            <file href="scripts/net_ipov/wbt/lms/persistor.js" />
+            <file href="scripts/net_ipov/wbt/lms/scorm_1p2.js" />
+            <file href="scripts/net_ipov/wbt/lms/scorm_1p2_base.js" />
+            <file href="scripts/net_ipov/wbt/loader-json.js" />
+            <file href="scripts/net_ipov/wbt/nls/wbt.js" />
+            <file href="scripts/net_ipov/wbt/status.js" />
+            <file href="scripts/net_ipov/wbt/wbt.js" />
+            <file href="scripts/order.js" />
+            <file href="scripts/require-jquery.js" />
+            <file href="scripts/swfobject.js" />
+            <file href="scripts/text.js" />
+            <file href="scripts/theme/css/banner-container.css" />
+            <file href="scripts/theme/css/breadcrumbs.css" />
+            <file href="scripts/theme/css/content-rules.css" />
+            <file href="scripts/theme/css/dialogs.css" />
+            <file href="scripts/theme/css/fixie.css" />
+            <file href="scripts/theme/css/layout-containers.css" />
+            <file href="scripts/theme/css/progress-button.css" />
+            <file href="scripts/theme/css/site-menu.css" />
+            <file href="scripts/theme/css/theme.css" />
+            <file href="scripts/theme/css/theme_old.css" />
+            <file href="scripts/theme/css/topic-progress-indicator.css" />
+            <file href="scripts/theme/css/wbt-menu.css" />
+            <file href="scripts/theme/imgs/close-x.gif" />
+            <file href="scripts/theme/imgs/icon-link.gif" />
+            <file href="scripts/theme/imgs/logo.gif" />
+            <file href="scripts/theme/imgs/menu_closed.xcf" />
+            <file href="scripts/theme/imgs/menu_icons_01_sprite.gif" />
+            <file href="scripts/theme/imgs/menu_icons_01_sprite.xcf" />
+            <file href="scripts/theme/imgs/menu_open.xcf" />
+            <file href="scripts/theme/imgs/silearn_open_dialog.xcf" />
+            <file href="scripts/theme/imgs/site-header.jpg" />
+            <file href="scripts/theme/imgs/toolbar-bg-green.gif" />
+            <file href="scripts/theme/imgs/toolbar-bg-grey.gif" />
+            <file href="scripts/theme/imgs/wbt-navbar-sprite.gif" />
+            <file href="scripts/theme/imgs/wbt-navbar-sprite.xcf" />
+            <file href="scripts/theme/imgs/wbt-navbar-top-sprite.gif" />
+            <file href="scripts/theme/imgs/wbt-navbar-top-sprite.xcf" />
+            <file href="scripts/theme/nls/theme.js" />
+            <file href="scripts/theme/scripts/breadcrumbs-fn.js" />
+            <file href="scripts/theme/scripts/nav-ctrls-fn.js" />
+            <file href="scripts/theme/scripts/progress-buttons-fn.js" />
+            <file href="scripts/theme/scripts/template-fn.js" />
+            <file href="scripts/theme/scripts/wbt-menu-fn.js" />
+            <file href="scripts/theme/theme.js" />
+            <file href="scripts/theme/tmpl/banner_bottom.html" />
+            <file href="scripts/theme/tmpl/banner_content.html" />
+            <file href="scripts/theme/tmpl/confirmDlg.html" />
+            <file href="scripts/theme/tmpl/content_top.html" />
+            <file href="scripts/theme/tmpl/footer_content.html" />
+            <file href="scripts/theme/tmpl/site_menu.html" />
+            <file href="scripts/tmpl/banner-body-footer.html" />
+            <file href="scripts/wbt-main.js" />
+            <file href="site/001_start.swf" />
+            <file href="site/002.swf" />
+            <file href="site/003.swf" />
+            <file href="site/004.swf" />
+            <file href="site/catalog.xml" />
+            <file href="site/site.js" />
+        </resource>
+    </resources>
+
+</manifest>

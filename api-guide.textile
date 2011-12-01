@@ -1,0 +1,97 @@
+h1. WBT App Initialization.
+
+We use RequireJS for 'modularization' of javascript (and CSS) code, when built for production  mode the modules should mostly be in-lined into a central JS file(s) to avoid network latency issues.
+
+The initial code is triggered from index.html where:
+# a hard-coded net_ipov_cfg object is created and initially populated
+# scripts/amplify.store.js is loaded for a client-side 'session' persistance
+# scripts/_init.js loads and runs, which populates the net_ipov_cfg object with any parameters set via the URL Querystring
+
+Once the basic initialization is complete, RequireJS is loaded with a *main* attribute of "scripts/wbt-main".
+
+In the production system script/wbt-main.js can be expected to contain the entire set of initial code (as created by the ReadyJS builder), but in the development version it is a small-ish function which triggers the primary dependencies to load, including the net_ipov/wbt/wbt script and then starts the WBT code running.
+
+h2. Data Loading
+
+Our WBT 'class' must be passed two dependiecies - Session (used to store the session state and connect to any LMS apis) and a Loader (which is responible for actually loading the site/wbt definition, parsing it, and initiating a callback to the WBT when done).
+
+
+h1. Javascript Globals
+
+Much as we would like to avoid 'global' javascript variables, we find this is not always feasible.  The following are the main items we need to be aware of.
+
+h3. $ / jQuery
+
+This is the standard jQuery object.
+
+h3. require
+
+The RequireJS code (or future alternative).  This is callable as both an object with properties, e.g. require.config  and as a function, e.g. require( [array or required modules], function () {})
+
+h3. net_ipov_cfg
+
+This is created in the index.html and any base/default values can be set there.  Any URL parameters (query string) are read in and used to populate it in the _init.js file, URL parameters will override hardcoded values.  Currently the app must be reloaded for (most) changes to take effect.
+
+@prop    sid   The location Store ID used to retrieve the client-side data store object.  If not set explicitly via config, the url parameters are consulted before falling back to document.location.path
+@prop    locale  The user language settings to use.  Can be set explicitly, sent via querystring, or read from the browser default.
+@prop    ex    'Enable eXit' If '1' then the exit button will always be shown, otherwise exit button visibility will depend on if the WBT is in a Javascript opened window OR running in LMS mode.
+@prop    ds    0 (zero) to not use a client-side data store, 1 (one) to try to use a client-side datastore, default = 1
+@prop    ds.s  Int The stragtegy to use when updating the datastore.  Defaults to 1.
+@prop    lms    0 (zero) to not make LMS connections, 1 (one) to attempt to make an LMS connection, default = 1 as the standard way to disable would be to simply replace the LMS Adaptor reference (in wbt-main.js) with a reference to the client-side Persistor class.
+@prop    lms.conn   (Not Implemented) String, default null.  If set this is the name of an LMS Connector/Adapter to use (must be part of the packaging under net_ipov/wbt/lms)
+@prop    lms.f    Fail if there is no LMS connection.  0 (zero) means continue, 1 (one) means fail.  Default is zero.
+@prop    lms.d    Delay loading objectives data from LMS API.  If set to 1 (not implemented) then delayed loading should take place.
+@prop    lms.sc   Turn this on to 'force' scoring.  Our default LMS Adaptor simply records Completion, but does not set a 'score'.
+
+@object  store   This is set during initialization - its a reference to the amplify.store( cfg.sid )  object (may be null)
+
+
+h3. urlParams
+
+A hash of the query string parameters that where present when the app loaded. Note that "_init.js" reads these in and adds any values to the 'net_ipov_cfg' object's properties.  Mainly used for things such as passing in a locale, etc....
+
+
+
+h1. Data Store Specification
+
+We are currently using Amplify.Store (http://amplifyjs.com/api/store/) as a wrapper to facilitate access to the various browser based 'local data stores'.  This could be changed without too much difficulty to any other format, with the one issue being that older browsers would not get their data restored for existing sites that where upgraded.
+
+The main concern is that these type of data stores operate on what is essentially a Javascript object/hash where the keys are defined dynamically by whatever code creates them, instead of statically.  This means we can not rely on a class / interface definition to document what values are available.
+
+Retrieving an initial 'store' should be done as follows:
+
+@// The localStorage is scoped to the port + hostname (essentially)
+var loc = ((window) && (window.location) && (window.location.path)) ? window.location.path : '$';
+var store = amplify.store( loc );
+@
+
+At this point we should have a Javascript object defining the 'Data Store' for the current HTML page.
+Note we may want to use window.parent in some cases is we are in a frameset...  We then need to know what
+values we can expect this object to contain.  *Note: we may define a simple function for this, but that would add extra bits to our site size...*
+
+
+h2. Standard Data Store values
+
+h3. locale
+
+This is the current locale value (all lowercase) to use when loading i18n data.  It can be either 2 or 5 chars:  "en" or "en-us", "fr" or "fr-fr", etc...
+Currently the RequireJS i18n plugin parses this string when loading values, but we may also parse it into components as needed.
+Retrive via:  store.locale  or  store['locale']
+
+
+h3. tid
+
+This is the last "Topic" identifier that was loaded (in a previous session) buy the user.  Depending on the site configuration we may use this value to restore the last topic to the view or not.  In some cases we may not store this value at all (e.g. SCORM enabled site running in an LMS may rely on the SCORM data instead).
+
+
+h3. st
+
+This is a object/hash containing the 'state' for any topics that the user has accessed (topics that have not been at least loaded are not stored).  Each Topic's state is accessible by the topic's ID, so it can be retrieved by:
+
+var topicState = st[ topic.id ];
+
+
+h3. st.topicId
+
+See the st definition.  This is a 'state' object representing the Topic state for the current user.  The 'state' information is derived from the SCORM 1.2 API, but where possible stored as a numberic index instead of a string value to save space when encoding (the data store is typically encoded and stored as a JSON string).
+

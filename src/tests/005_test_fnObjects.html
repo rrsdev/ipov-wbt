@@ -1,0 +1,68 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+      "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+  <head>
+    <link rel="stylesheet" href="assets/qunit.css" type="text/css"/>
+    <script type="text/javascript" src="../scripts/require-jquery.js"></script>
+    <script type="text/javascript" src="assets/qunit.js"></script>
+    <script type="text/javascript">
+    // TODO: initialize locale from amplify.store?
+    require.config({
+        baseUrl: "../scripts"
+    });
+
+    // don't start on domReady (may already be suppresed in newest qunit)
+    QUnit.config.autostart = false;
+
+    // for longer test suites use require to load the test-suite and then just call Qunit.start()
+    require( ["jquery"], function ($) {
+
+    	var fn1 = function (data) {
+    		this.data = data;
+
+    		function xyz (val) {
+    			alert( this.data.greet + " " + val );
+    		}
+    	};
+
+
+
+        test("Mime 1", function() {
+
+        });
+
+        /*
+        test("Mime 2", function() {
+            var mime2 = new MimeType("text/html");
+
+            QUnit.equals( mime2.type, "text", "The base 'type' should be 'text'.");
+            QUnit.equals( mime2.subtype, "html", "The 'subtype' should be 'html'.");
+            QUnit.equals( mime2.extradata, null, "The extradata should be 'null'.");
+        });
+
+        test("Mime 3", function() {
+            var mime3 = new MimeType("audio/vnd.rn-realaudio");
+            QUnit.equals( mime3.type, "audio", "The base 'type' should be 'audio'.");
+            QUnit.equals( mime3.subtype, "vnd.rn-realaudio", "The 'subtype' should be 'vnd.rn-realaudio'.");
+            QUnit.equals( mime3.extradata, null, "The extradata should be 'null'.");
+        });
+
+        test("Mime 4", function() {
+            var mime4 = new MimeType("application/xhtml+xml");
+            QUnit.equals( mime4.type, "application", "The base 'type' should be 'application'.");
+            QUnit.equals( mime4.subtype, "xhtml", "The 'subtype' should be 'xhtml'.");
+            QUnit.equals( mime4.extradata, "xml", "The extradata should be 'xml'.");
+        });
+        */
+        QUnit.start();
+    });
+    </script>
+  </head>
+  <body>
+    <h1 id="qunit-header">QUnit example</h1>
+    <h2 id="qunit-banner"></h2>
+    <h2 id="qunit-userAgent"></h2>
+    <ol id="qunit-tests">
+    </ol>
+  </body>
+</html>

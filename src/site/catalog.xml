@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<catalog>
+  <video filename="001_start.swf" compressed="true" version="9" dataByteSize="496283" fps="24" frameCount="695" end="695" start="1" height="605" width="1000" duration="28.958334"></video>
+  <video filename="002.swf" compressed="true" version="9" dataByteSize="1261926" fps="24" frameCount="1754" end="1754" start="1" height="604" width="999" duration="73.083336"></video>
+  <video filename="003.swf" compressed="true" version="9" dataByteSize="597226" fps="24" frameCount="2411" end="2411" start="1" height="604" width="999" duration="100.458336"></video>
+  <video filename="004.swf" compressed="true" version="9" dataByteSize="884971" fps="24" frameCount="1133" end="1133" start="1" height="604" width="999" duration="47.208332"></video>
+</catalog>

@@ -1,0 +1,67 @@
+/* layout-containers are the main 'block' areas of the page and are defined as part of the theme L&F   */
+
+/*! theme = silearn, siemens wbt theme  */
+
+@import url("banner-container.css");
+
+/* Element added to contain 'accsibility' text (e.g. image caption).
+   This is directly from the Siemens.com theme, and I have some doubts about whether or not it will work with modern browers/screen-readers.
+*/
+.access {
+    left: -10000px;
+    top: -10000px;
+    position: absolute;
+}
+
+
+#content-top {
+    padding: 18px 3px 1px 3px;
+    margin-bottom: 20px;
+    font-size: 11px;
+}
+
+#content-bottom {
+    display: none;
+    height: 0;
+}
+
+
+#content-container {
+    margin-bottom: 25px;
+    padding: 0 52px;
+}
+
+#footer-container {
+    position:absolute;
+    bottom:0;
+    border-top: 1px solid #252525;
+    height: 24px;
+    z-index: 20;
+    width: 100%;
+}
+
+.ie6 #footer-container {
+    position:relative;
+}
+
+#footer-content {
+    height: 20px;
+    padding: 2px;
+    position: relative;
+    font-size: 11px;
+}
+
+#footer-content .footer-left {
+    height: 20px;
+    font-size: 1px;
+    line-height: 1px;
+    margin-left: 20px;
+}
+
+/** These are where the wbt-ctrls content goes. */
+#footer-content .controls-right, #banner-bottom .controls-right {
+    /** width: 140px;    Don't know why, but it wants extra px */
+    height: 20px;
+    position: absolute;
+    right: 20px;
+}

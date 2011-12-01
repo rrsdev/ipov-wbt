@@ -1,0 +1,71 @@
+
+/* Navigation bar with 'previous' & 'next' buttons. */
+.wbt-navbar {
+    display: inline-block;
+    height: 16px;
+    line-height: 16px;
+    padding: 0 2px;
+    font-size: 11px;
+}
+
+#banner-bottom .wbt-navbar {
+    padding: 4px 2px 0;
+}
+
+.wbt-navbar .page-numbering {
+    display: inline-block;
+    width: 68px;
+    color: #252525;
+    text-align: center;
+    overflow: hidden;
+}
+
+.wbt-navbar .nav-btn {
+    display: inline-block;
+    visibility: hidden;     /* Start with it hidden. */
+    position: relative;
+    color: #252525;
+    height: 11px;
+    cursor: pointer;
+}
+
+.wbt-navbar .nav-btn.prev {
+    border-right: 1px solid #252525;
+    padding-right: 7px;
+}
+
+.wbt-navbar .nav-btn.next {
+    border-left: 1px solid #252525;
+    padding-left: 7px;
+}
+
+
+.wbt-navbar .nav-arrow {
+    display: inline-block;
+    width: 26px;
+    height: 11px;
+    border-width: 0 0 0 0;
+    border-style: none;
+    border-color: transparent;
+    background: url('../imgs/wbt-navbar-sprite.gif') no-repeat 0 0;
+}
+
+.wbt-navbar .nav-arrow.next {
+    background-position: 0 -11px;
+    border-width: 0 0 0 0;
+    border-style: none;
+    border-color: transparent;
+}
+
+.wbt-navbar .nav-btn .text, #banner-bottom .wbt-navbar .nav-btn .text {
+    display: inline-block;
+    position: relative;
+    top: -1px;
+    height: 11px;
+    line-height: 11px;
+    font-size: 10px;
+    vertical-align: top;
+    border-width: 0 0 0 0;
+    border-style: none;
+    border-color: transparent;
+}

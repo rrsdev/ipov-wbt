@@ -1,0 +1,45 @@
+/* layout-containers are the main 'block' areas of the page and are defined as part of the theme L&F   */
+@import url("layout-containers.css");
+
+/* The main rules for the 'content' area */
+@import url("content-rules.css");
+
+@import url("site-menu.css");
+@import url('topic-progress-indicator.css');
+@import url('wbt-menu.css');
+@import url('progress-button.css');
+@import url('breadcrumbs.css');
+@import url('dialogs.css');
+
+h1, h2, h3, h4, h5, h6, p, ul, li, dl, dt, dd, caption, th, td, label {
+    font-family: Arial,Helvetica,sans-serif;
+    margin: 0;
+}
+
+h1 {
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 20px;
+}
+
+#header-banner-txt h1 {
+    color: #FFFFFF;
+    padding: 0 0 11px;
+}
+
+.content-overlay {
+  display:none;
+  position:fixed;
+  border-width: 0;
+  margin: 0;
+  padding: 0;
+  background: #aaaaaa none repeat scroll 0 0;
+  filter:alpha(opacity=70);
+  opacity: 0.70;
+  left:0;
+  top:0;
+  z-index: 200;
+  -moz-background-clip: -moz-initial;
+  -moz-background-origin: -moz-initial;
+  -moz-background-inline-policy: -moz-initial;
+}

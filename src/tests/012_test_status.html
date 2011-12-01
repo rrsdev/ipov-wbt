@@ -1,0 +1,47 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+      "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+  <head>
+    <link rel="stylesheet" href="assets/qunit.css" type="text/css"/>
+    <script type="text/javascript" src="../scripts/require-jquery.js"></script>
+    <script type="text/javascript" src="assets/qunit.js"></script>
+    <script type="text/javascript">
+    // TODO: initialize locale from amplify.store?
+    require.config({
+        baseUrl: "../scripts"
+    });
+
+    // don't start on domReady (may already be suppresed in newest qunit)
+    QUnit.config.autostart = false;
+
+    // for longer test suites use require to load the test-suite and then just call Qunit.start()
+    require( ["net_ipov/wbt/status"], function (Status) {
+
+    	test("Status 1", function() {
+            ok( null != Status, "Status module must be non-null.");
+        });
+
+    	test("Status 2", function() {
+            QUnit.equals( Status._NAMES.length, 6, "The ._NAMES property should be an array of length 6.");
+        });
+
+    	test("Status 3", function() {
+            QUnit.equals( Status.NOT_ATTEMPTED(), 0, "There should be a function which returns this value.");
+        });
+
+    	test("Status 4", function() {
+            QUnit.equals( Status.PASSED(), 5, "Passed should be the 5th element in the array.");
+        });
+
+    	QUnit.start();
+    });
+    </script>
+  </head>
+  <body>
+    <h1 id="qunit-header">QUnit example</h1>
+    <h2 id="qunit-banner"></h2>
+    <h2 id="qunit-userAgent"></h2>
+    <ol id="qunit-tests">
+    </ol>
+  </body>
+</html>
