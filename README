@@ -14,3 +14,5 @@ Multiple "modes" of SCORM operation are possible (for a packaged site), but the 
 Alternative modes should be pluggable with not too much extra work - see net_ipov/wbt/lms/factory.js
 
 See docs/api-guide.textile for basic configuration information.
+
+For an example, see  http://demos.ipov.net/maps/blindness/
