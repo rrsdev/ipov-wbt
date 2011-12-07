@@ -1,4 +1,4 @@
-/* 
+/*
 Copyright (C) 2011 iPOV.net
 Author: Robert Sanders (robert.sanders@ipov.net)
 
@@ -18,7 +18,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 /* layout-containers are the main 'block' areas of the page and are defined as part of the theme L&F   */
 
-/*! theme = silearn, siemens wbt theme  */
+/*! theme = bbf wbt theme  */
 
 @import url("banner-container.css");
 

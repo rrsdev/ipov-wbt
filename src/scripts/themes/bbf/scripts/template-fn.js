@@ -1,4 +1,4 @@
-/* 
+/*
 Copyright (C) 2011 iPOV.net
 Author: Robert Sanders (robert.sanders@ipov.net)
 
@@ -22,11 +22,11 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 define([
 		"text!tmpl/banner-body-footer.html",	// the main 'body' of the template
-		"text!themes/silearn/tmpl/banner_content.html",		// "./scripts"  is automatically prepended to the path here.
-		"text!themes/silearn/tmpl/banner_bottom.html",
-		"text!themes/silearn/tmpl/content_top.html",
-		"text!themes/silearn/tmpl/footer_content.html",
-		"text!themes/silearn/tmpl/confirmDlg.html"
+		"text!themes/bbf/tmpl/banner_content.html",		// "./scripts"  is automatically prepended to the path here.
+		"text!themes/bbf/tmpl/banner_bottom.html",
+		"text!themes/bbf/tmpl/content_top.html",
+		"text!themes/bbf/tmpl/footer_content.html",
+		"text!themes/bbf/tmpl/confirmDlg.html"
 	], function (
 		tmplBody,
 		tmplBannerContent,

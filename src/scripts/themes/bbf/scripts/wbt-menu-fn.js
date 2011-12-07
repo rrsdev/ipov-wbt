@@ -1,4 +1,4 @@
-/* 
+/*
 Copyright (C) 2011 iPOV.net
 Author: Robert Sanders (robert.sanders@ipov.net)
 
@@ -21,7 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  *
  * @return Function( theme, wbt ) which builds the main site menu for the theme
  */
-define(["jquery", "net_ipov/pubsub", "text!themes/silearn/tmpl/site_menu.html"], function ($, _pubsub, tmplSiteMenu) {
+define(["jquery", "net_ipov/pubsub", "text!themes/bbf/tmpl/site_menu.html"], function ($, _pubsub, tmplSiteMenu) {
 	return function(theme, wbt) {
 
 		var eleMenuContainer = theme.find("#site-menu");

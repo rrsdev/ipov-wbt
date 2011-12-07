@@ -28,7 +28,7 @@
             exclude: ["jquery", "amplify.store"]		// jquery is already baked in,  the theme code needs to be a separate module
         },
         {
-        	name: "themes/silearn/theme",
+        	name: "themes/bbf/theme",
         	exclude: ["jquery", "amplify.store", "wbt-main"]
         }
     ],

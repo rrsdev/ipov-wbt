@@ -34,6 +34,7 @@
 
 	<target name="build-main">
 	    <description>Build the main WBT 'Player' code, excluding the theme component.</description>
+		<mkdir dir="build"/>
 		<antcall target="-optimize">
             <param name="requirejs.buildProfile" value="build-profile-main.js" />
         </antcall>
