@@ -13,6 +13,6 @@ It has a SCORM 1.2 compatibility layer (on by default) which can be used (with a
 Multiple "modes" of SCORM operation are possible (for a packaged site), but the only one currently supported is to consider the entire WBT as a single SCO.
 Alternative modes should be pluggable with not too much extra work - see net_ipov/wbt/lms/factory.js
 
-See docs/api-guide.textile for basic configuration information.
+See api-guide.textile for basic configuration information.
 
 For an example, see  http://demos.ipov.net/maps/blindness/
