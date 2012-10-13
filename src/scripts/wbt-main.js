@@ -1,6 +1,6 @@
 /* 
 Copyright (C) 2011 iPOV.net
-Author: Robert Sanders (robert.sanders@ipov.net)
+Author: Robert Sanders (dotperson@gmail.com)
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -45,7 +45,7 @@ require([
 
 		      // Configure and initialize the WBT.
 		      // Note that due to the way this currently works there is no 'guard' on calling this from elsewhere.
-		      wbt.i18n = $.extend({}, i18n, theme.i18n)
+		      wbt.i18n = $.extend({}, i18n, theme.i18n);
               wbt.init(loader, theme, persistor);
   		});
       }

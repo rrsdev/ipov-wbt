@@ -1,6 +1,6 @@
-/* 
+/*
 Copyright (C) 2011 iPOV.net
-Author: Robert Sanders (robert.sanders@ipov.net)
+Author: Robert Sanders (dotperson@gmail.com)
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -163,6 +163,7 @@ define(
 		 * @param idOrTopic Either a string Id of a topic, or a Topic object that should be loaded as the content (e.g. set as this.currentTopic).
 		 */
 		_topicFromId: function (idOrTopic) {
+			//alert( typeof idOrTopic );
 			return ("string" == typeof idOrTopic) ? this.topicById(idOrTopic) : idOrTopic;
 		},
 
@@ -178,7 +179,7 @@ define(
 				return;
 			}
 
-			var tpcId = ("string" == typeof idOrTopic) ? idOrTopic : idOrTopic.id;
+			var tpcId = (idOrTopic.id) ? idOrTopic.id : idOrTopic;
 			$.bbq.pushState({ tid: tpcId });
 		},
 
@@ -192,6 +193,8 @@ define(
 			if ((undefined == tpc) || (null == tpc)) {
 				_log.error("WBT.navigate called on topic Id '" + idOrTopic + "' that does not exist in the WBT.");
 				return;
+			} else if (!(tpc.content)) {
+				// need to find next item w/ content
 			}
 
 			var oldTpc = this.currentTopic;

@@ -1,6 +1,6 @@
 /*
 Copyright (C) 2011 iPOV.net
-Author: Robert Sanders (robert.sanders@ipov.net)
+Author: Robert Sanders (dotperson@gmail.com)
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -72,7 +72,11 @@ define(["jquery", "net_ipov/pubsub", "text!themes/bbf/tmpl/site_menu.html"], fun
 		var mnuEntries = eleMenuCtnr.find(".main-menu-entry");
 		mnuEntries.click( function (evt) {
 			fnToggleMenu(evt);
-			wbt.navigate( $(this).data("topicId") );
+			var tpc = wbt._topicFromId( String( $(this).data("topicId") ) );
+			if (!(tpc.content)) {
+				tpc = wbt.firstContentDescd(tpc);
+			}
+			wbt.navigate( tpc );
 		} ).find(".topic-progress-indicator").each(function (indx, ele) {
 			// need to find the Topic based on the Id:
 			ele = $(ele);
