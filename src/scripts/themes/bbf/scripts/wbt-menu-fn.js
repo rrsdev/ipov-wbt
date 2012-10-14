@@ -72,11 +72,7 @@ define(["jquery", "net_ipov/pubsub", "text!themes/bbf/tmpl/site_menu.html"], fun
 		var mnuEntries = eleMenuCtnr.find(".main-menu-entry");
 		mnuEntries.click( function (evt) {
 			fnToggleMenu(evt);
-			var tpc = wbt._topicFromId( String( $(this).data("topicId") ) );
-			if (!(tpc.content)) {
-				tpc = wbt.firstContentDescd(tpc);
-			}
-			wbt.navigate( tpc );
+			wbt.navigate( $(this).data("topicId") );
 		} ).find(".topic-progress-indicator").each(function (indx, ele) {
 			// need to find the Topic based on the Id:
 			ele = $(ele);

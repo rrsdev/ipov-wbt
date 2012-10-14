@@ -180,7 +180,13 @@ define(
             }
 
             var tpcId = (idOrTopic.id) ? idOrTopic.id : idOrTopic;
-            $.bbq.pushState({ tid: tpcId });
+
+            var tpc = wbt._topicFromId( "" + tpcId );
+            if (!(tpc.content)) {
+				tpc = wbt.firstContentDescd(tpc);
+			}
+
+            $.bbq.pushState({ tid: tpc.id });
         },
 
         onNavigate: function ( idOrTopic ) {
