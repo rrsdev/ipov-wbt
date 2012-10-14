@@ -1,4 +1,4 @@
-/* 
+/*
 Copyright (C) 2011 iPOV.net
 Author: Robert Sanders (dotperson@gmail.com)
 
@@ -27,47 +27,48 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 define(
 [
-    "net_ipov/wbt/cr/csp-sc-1"
+    "net_ipov/wbt/cr/csp-sc-1",
+    "net_ipov/wbt/cr/iframe"
 ],
 function () {
-	var _renderers = {};
+    var _renderers = {};
 
-	var args = arguments;	// the array of other arguments, these are the renderer plugins.
-	for (var i = 0; i < args.length; i++) {
-		var m = [].concat(  args[i]  );		// We can return an array of renderers from each plugin module, if it wasn't an array it is now
-		for (var j = 0; j < m.length; j++) {
-			_renderers[ m[j].filter ] = m[j];
-		}
-	}
-	_renderers['*'] = function (topic, content, data) {
-		return "";
-	};
+    var args = arguments;	// the array of other arguments, these are the renderer plugins.
+    for (var i = 0; i < args.length; i++) {
+        var m = [].concat(  args[i]  );		// We can return an array of renderers from each plugin module, if it wasn't an array it is now
+        for (var j = 0; j < m.length; j++) {
+            _renderers[ m[j].filter ] = m[j];
+        }
+    }
+    _renderers['*'] = function (topic, content, data) {
+        return "";
+    };
 
-	return function ( topic, content, data ) {
-		// return either the specific match or a default '*' match (which may not be present either...)
-		var obj = _renderers[ content._type ] || _renderers['*'];
+    return function ( topic, content, data ) {
+        // return either the specific match or a default '*' match (which may not be present either...)
+        var obj = _renderers[ content._type ] || _renderers['*'];
 
-		// Essentially this is returning a 'partial'
-		// I am really divided: should the 'raw' renderer function be returned (as above), or should we 'wrap' it to create a closure which can then be invoked without repeating the parameters?
-		if (obj) {
+        // Essentially this is returning a 'partial'
+        // I am really divided: should the 'raw' renderer function be returned (as above), or should we 'wrap' it to create a closure which can then be invoked without repeating the parameters?
+        if (obj) {
 
-			if (obj.render) {
-				return {
-					render: function(theme) {
-						return obj.render(theme, topic, content, data);
-					}
-				};
-			} else if (obj.renderTo) {
-				return {
-					renderTo: function(theme, parentEle) {
-						return obj.renderTo(theme, parentEle, topic, content, data);
-					}
-				};
-			}
+            if (obj.render) {
+                return {
+                    render: function(theme) {
+                        return obj.render(theme, topic, content, data);
+                    }
+                };
+            } else if (obj.renderTo) {
+                return {
+                    renderTo: function(theme, parentEle) {
+                        return obj.renderTo(theme, parentEle, topic, content, data);
+                    }
+                };
+            }
 
-		} else {
-			return null;
-		}
-	};
+        } else {
+            return null;
+        }
+    };
 
 });
