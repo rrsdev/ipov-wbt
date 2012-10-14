@@ -1,0 +1,9 @@
+h1. WBT Program Flow
+
+The flow is the sequence of events that takes place to load and play a WBT site.  The term event is used because while the initial code is deterministic, based on the WBT site as defined in the site.js file, other aspects of the loading and playback are based on the interactions of the user.
+
+The Intialization phase encompasses the loading of all the javascript, css, and theme files into the browser; along with the initial parsing of the WBT definition and communication with an LMS.
+
+The Initialization phase includes the separate Theme phase.  Themes are based on the jsrender project.
+
+During playback of the WBT, content is rendered for display to the user.  While this involves the theme (currently the theme has limited say in the rendering) the main location for this logic is the content-render code.

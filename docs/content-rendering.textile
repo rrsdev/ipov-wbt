@@ -1,0 +1,11 @@
+h1. Content Rendering
+
+Content rendering is the process of taking the assets defined in the site.js file and displaying them as part of the WBT.
+
+The key to the content-rendering is the net_ipov.wbt.cr module, which deligates to various renderers defined in net_ipov.wbt.cr package (note that's the same name, but one is a javascript file, the other is a directory).  Because javascript does not have dynamic loading (at least for browser based runtimes), the content-renders are currently linked into the cr.js file statically.  This may be switched to a built-time decision, e.g. the builder may either edit the cr.js file as it builds the packaged version(s) and only include those renderers that a particular build script calls for.
+
+A content-renderer is a RequireJS module which returns and array containing one or more renderer objects, these are typically anonymous objects.
+
+Each renderer object must declare the content type that it acts on.  Currently this must be a string, in the future this might be an array of strings.  The content-type is essentially a mime-type, see the site.js documentation.
+
+Each renderer must also declare *either* a renderTo(theme, parentEle, topic, content, data) function (prefered) or a render() function.  The render function returns a string that is added as html content to the WBT display area.  The renderTo() function is responible for adding itself to the content area, this is slightly more complex but is more performant and allows for proper registration of listeners and callbacks as needed.
