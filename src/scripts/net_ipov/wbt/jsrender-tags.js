@@ -1,4 +1,4 @@
-/* 
+/*
 Copyright (C) 2011 iPOV.net
 Author: Robert Sanders (dotperson@gmail.com)
 
@@ -22,14 +22,20 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  * Return Type: object w/ collection of functions which can be run to register a particluar 'tag'.
  *
  */
-define(["jquery", "jsrender"], function($) {
+define(["jquery", "jsrender", "net_ipov/log"], function($, _r, _log) {
 	return {
 
 		tmpl: function () {
-			$.views.registerTags({
+			$.views.tags({
 				'tmpl': function (tmplName) {
-					var val = $.render(tmplName, this.data, this.ctx);
-					return (val) ? val : '';	//no 'undefined'..
+					var t = $.render[tmplName];
+					if (t) {
+						var val = t(this.data, this.ctx);
+						return (val) ? val : '';	//no 'undefined'..
+					} else {
+						_log.error('No definition of template "' + tmplName + '" found.');
+						return '';
+					}
 				}
 			});
 		}

@@ -29,9 +29,10 @@ define(["jquery", "net_ipov/pubsub", "text!themes/bbf/tmpl/site_menu.html"], fun
 		var isMenuOpen = false;		// state of the menu item (pulled in via closures)
 
 		// First things first, register and then render the main site menu template into the theme.
-		$.template( 'site_menu', tmplSiteMenu );
+		$.templates( { site_menu: tmplSiteMenu } );
+		var t_html = $.render['site_menu'](wbt.contentModel.root);
 		var eleMenuItems = eleMenuContainer.find(".menu-items")
-			.first().html( $.render('site_menu', wbt.contentModel.root)  );
+			.first().html( t_html );
 
 		var _menuIndicatorEles = {};
 

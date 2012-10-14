@@ -147,7 +147,7 @@ define([
             themeEle = $("#wbt-main");
             waitHtml = themeEle.html();		// the initial content should be the 'loading' html
 
-            themeEle.html( $.render('theme', _wbt) );
+            themeEle.html( $.render['theme']( _wbt ) );
 
             contentMainEle = $("#content-main");
 
@@ -273,7 +273,8 @@ define([
 
             var result = {};
             // Create basic dialog:
-            var dlg = $( $.render('confirmDlg', { title: title, desc: desc }) );
+            var txt = $.render['confirmDlg']( { title: title, desc: desc });
+            var dlg = $( txt );
 
             dlg.find(".dialog-yes").html( _i18n.yes ).click(function () {
                 dlg.remove();

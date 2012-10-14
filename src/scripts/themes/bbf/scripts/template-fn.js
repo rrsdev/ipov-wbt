@@ -1,4 +1,4 @@
-/* 
+/*
 Copyright (C) 2011 iPOV.net
 Author: Robert Sanders (dotperson@gmail.com)
 
@@ -38,14 +38,16 @@ define([
 
 	// code,
 	return function ($) {
-		$.template( 'bannerContent', tmplBannerContent );
-		$.template( 'bannerBottom', tmplBannerBottom );
-		$.template( 'contentTop', tmpContentTop );
-		$.template( 'contentMain', '' );
-		$.template( 'contenBottom', '' );
-		$.template( 'footerTop', '' );
-		$.template( 'footerContent', tmplFooterContent );
-		$.template( 'theme', tmplBody );
-		$.template( 'confirmDlg', tmplConfirmDlg );
+		$.templates({
+			bannerContent: tmplBannerContent,
+			bannerBottom: tmplBannerBottom,
+			contentTop: tmpContentTop,
+			contentMain: '',
+			contenBottom: '',
+			footerTop: '',
+			footerContent: tmplFooterContent,
+			theme: tmplBody,
+			confirmDlg: tmplConfirmDlg
+		});
 	};
 });
