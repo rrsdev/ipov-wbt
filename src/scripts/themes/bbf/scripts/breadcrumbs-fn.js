@@ -87,7 +87,6 @@ define(["jquery", "net_ipov/pubsub"], function ($, _pubsub) {
 			destroy: function () {
 				try {
 					_pubsub.unsubscribe(hndl);
-					//parentEle.remove(domNode);
 				} catch (ex) {}
 			}
 		};

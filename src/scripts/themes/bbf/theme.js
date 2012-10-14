@@ -187,6 +187,11 @@ define([
                 _themeWidgets.push(
                     navCtrlsFn( theme, wbt, {parentEle: $('#footer-container .footer-left').first() } )
                 );
+                /*
+                _themeWidgets.push(
+					progressButtonsFn( theme, wbt, {parentEle: $('#footer-container .footer-left').first() } )
+				);
+                */
                 _themeWidgets.push(
                     breadcrumbsFn( theme, wbt, {parentEle: $('#content-top').first() } )
                 );
