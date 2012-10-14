@@ -21,8 +21,6 @@
         <echo>${files}</echo>
     </target>
 
-    <!--
-    Note, as of 1.0.2  the following does not fully work, it fails on the 'text!' entries used in the themess
     <target name="-optimize" description="Run 'r.js' on a build profile to combine and minify files.  Specify the build profile using 'requirejs.buildProfile'">
         <java classname="org.mozilla.javascript.tools.shell.Main">
             <classpath>
@@ -34,7 +32,7 @@
             <arg value="${requirejs.buildProfile}"/>
         </java>
         <echo message="optimized ${requirejs.buildProfile}" />
-    </target> -->
+    </target>
 
     <target name="build-main">
         <description>Build the main WBT 'Player' code, excluding the theme component.</description>
