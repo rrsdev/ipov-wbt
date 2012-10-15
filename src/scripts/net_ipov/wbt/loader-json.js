@@ -17,7 +17,16 @@ define(["require", "jquery", "net_ipov/wbt/Topic"], function(reqjs, $, TopicCtr)
 
 		var _topicIdMap = {};
 
-		var parentItem = null, tmpItem = null;
+		//var parentItem = null, tmpItem = null;
+		var parents = [null];
+		parents.last = function () {
+		    if (this.length > 0) {
+		        return this[ this.length - 1 ];
+		    } else {
+		        return null;
+		    }
+		};
+
 		var fnMakeId = function (item) {
 			// we might return hash code of the title if it where present,  but since JS doesn't support that...
 			return ((item._parent) ? item._parent.id + "-" : "")  + item.title.replace(/\s+/g, "").replace(/\.+/g, "-");
@@ -32,13 +41,14 @@ define(["require", "jquery", "net_ipov/wbt/Topic"], function(reqjs, $, TopicCtr)
 			TopicCtr.makeTopic(item);
 
 			//  Setup heirarchy linkages:
+			var parentItm = parents.last();
 			item.root = data;
-			item.parent = parentItem;
+			item.parent = parentItm;
 			item.childIndx = indx;	// the 'index' that the item occupies it its parent item's children[] array.
-			item.depth = (null == parentItem) ? 1 : 1 + parentItem.depth;
+			item.depth = (null == parentItm) ? 1 : 1 + parentItm.depth;
 			if (indx > 0) {
-				parentItem.children[ indx - 1 ].next = item;
-				item.prev = parentItem.children[ indx - 1 ];
+			    parentItm.children[ indx - 1 ].next = item;
+				item.prev = parentItm.children[ indx - 1 ];
 			} else {
 				item.prev = null;
 				item.next = null;
@@ -48,10 +58,12 @@ define(["require", "jquery", "net_ipov/wbt/Topic"], function(reqjs, $, TopicCtr)
 			_topicIdMap[ item.id ] = item;
 
 			if ((item.children) && (item.children.length > 0)) {
-				tmpItem = parentItem;
-				parentItem = item;
+
+				parents.push( item );
+
 				$.each(item.children, fnScan);
-				parentItem = tmpItem;
+
+				parents.pop();
 			}
 
 			// Recover the initial status (if there is one, or zero if not):
