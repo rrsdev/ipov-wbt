@@ -1,4 +1,4 @@
-/* 
+/*
 Copyright (C) 2011 iPOV.net
 Author: Robert Sanders (robert.sanders@ipov.net)
 
@@ -33,7 +33,6 @@ body {
 #wbt-main {
     position: relative;
     min-height: 100%;
-    overflow:auto;
 }
 
 
