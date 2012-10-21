@@ -1,0 +1,39 @@
+h1. Content Item Model
+
+The base of the content model is defined by the file site/site.js which is actually a JSON format file (not all web servers proberly send .json files).  The site.js file defines an implicit root item which is the site itself, the site then contains child items, which can be nested as deeply as makes sense.  The properties defined in the site.js file are refered to a 'static' properties because they are set at the time the WBT is published.  There are a set of 'dynamic' properties, which are created at runtime by the WBT code ( mostly in the net_ipov/wbt/loader-*.js module(s) ).  Unless otherwise noted it should be assumed that if you create static property with the same name as a dynamic property it will be overwritten at runtime.
+
+h2. Static Properties
+
+**id** If NOT set statically then the site will calculate an id as a dynamic property.  The advantage of setting the property statically is that if additional pages are inserted between revisions then they can be assigned new ids.  The id value is the WBT's client-side (and server-side when enabled) persistance, so if new items are added between versions it is important that they have new/unique ids in order to prevent the WBT from marking the wrong items as "complete".
+
+**title** This is the text with will be displayed in menus, tooltips, and as the banner 'title' when the content is loaded.
+
+**children** [optional]  If set this is an array of child items.
+
+**content**  [optional]  If an items does not have content, then it is an organizational item; that is it will display in menus and other navigational locations, but if the user attempts to navigate to the item they will be "forwarded" to either the first child item or the last child of the previous item (when using a 'previous' style link).
+
+**content._type**  This is a mime-type string (no content-encoding).  It is used to trigger the display logic for the content.  Currently there are only two types which are recognized (all others will result in errors):
+* "text/html" - this will display the content in a full-size iframe (the iframe will fill the content area)
+* "application/x-ipov-media-catalog" - custom mime-type for the catalog.xml based ipov flash player.
+
+**content.url**  This is the relative path (from the location of the site.js file) to the media object.  For example to the HTML to display or the content.xml to read.
+
+**content.?**  Depending on the content type it may require or allow extra settings.  For example, the ipov flash player takes a .video property which is either a single string or an array or strings representing the video elements in the catalog.xml which will be played.
+
+h2. Dynamic Properties
+
+**root** The root represents the WBT site, e.g. the implicit site item defined by the site.js, it is set as a property on each descendent to facilitate navigation.
+
+**parent** The direct parent of each item is set as a property during the JSON parsing phase.
+
+**childIndx**  The index (base zero) of the item within its parent's children array.
+
+**contentItemOffset** For items that have content, and thus appear within the viewing area, the 'absolute' offset (one based) within the site is recorded.  This is essentially a "page number" and allows for the site to display global progress.
+
+**depth**  The root item has a depth of zero, each set of child items has a depth of 1 more than its parent.  This is for tracking, but also for generating CSS markup in menus and other areas (having the property available greatly simplifies templating).
+
+**next** The item which will be linked to by any "Next" button/links.  Mainly set as a property to make templates simple.
+
+**prev** The item which will be linked to by any "Previous" button/links.  Mainly set as a property to make templates simple.
+
+**contentTotalCount**  This is set on the root item, specifing how many items contain content.

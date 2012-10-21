@@ -27,7 +27,8 @@ define(["jquery", "net_ipov/pubsub"], function ($, _pubsub) {
 
 			if (tpc.parent) {
 				// TODO: Note that depending on if content and non-content Topics are mixed this may not be totally 'accurate' from a user's perspective.
-				parentEle.find(".page-numbering").html( (1 + tpc.childIndx) + ' / ' + tpc.parent.children.length );
+				//parentEle.find(".page-numbering").html( (1 + tpc.childIndx) + ' / ' + tpc.parent.children.length );
+				parentEle.find(".page-numbering").html( tpc.contentItemOffset + ' / ' + tpc.root.contentTotalCount );
 			} else {
 				parentEle.find(".page-numbering").html('');
 			}

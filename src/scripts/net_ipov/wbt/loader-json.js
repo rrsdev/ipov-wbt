@@ -17,6 +17,9 @@ define(["require", "jquery", "net_ipov/wbt/Topic"], function(reqjs, $, TopicCtr)
 
 		var _topicIdMap = {};
 
+		// Keep track of the 'global/absolute' offset of an item.
+		var contentItemOffset = 1;
+
 		//var parentItem = null, tmpItem = null;
 		var parents = [null];
 		parents.last = function () {
@@ -45,6 +48,9 @@ define(["require", "jquery", "net_ipov/wbt/Topic"], function(reqjs, $, TopicCtr)
 			item.root = data;
 			item.parent = parentItm;
 			item.childIndx = indx;	// the 'index' that the item occupies it its parent item's children[] array.
+			if (item.content) {
+				item.contentItemOffset = contentItemOffset++;
+			}
 			item.depth = (null == parentItm) ? 1 : 1 + parentItm.depth;
 			if (indx > 0) {
 			    parentItm.children[ indx - 1 ].next = item;
@@ -72,6 +78,8 @@ define(["require", "jquery", "net_ipov/wbt/Topic"], function(reqjs, $, TopicCtr)
 			}
 		};
 		fnScan(-1, data);
+
+		data.contentTotalCount = contentItemOffset - 1;
 
 		// We are really exposing a very simple 'node' type structure here.
 		// We'll have the WBT.js to support more 'advanced' functionality as I think it should be more approriate there.
