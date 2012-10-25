@@ -206,7 +206,7 @@ define([
                 renderContent(wbt);
             });
 
-            this.size();
+            //this.size();
 
             // attach the 'exit' button if we have a use for it (e.g. if this appears to be a popup window):
             try {
@@ -332,17 +332,16 @@ define([
          * @param size [optional] An object with .h (height), .w (width) (both optional) or .x (width), .y (height) (both optional) properties
          */
         size: function () {
-            // Get the size, which should be passed-in unless this is a resize..
-            var sz = (arguments.length > 0) ? arguments[0] : {};
-
-            var height = sz.h || sz.y || (this.getMaxContentHeight() + 'px');
-            var width = sz.w || sz.x || 'auto';
-
-            $('#content-main').css({ width: width, height: height });
+            // Should reset any css size, the new CSS means we don't need to use this function on the BBF type themes.
+            $('#content-main').css({ width: '', height: '' });
         },
 
-        //TODO: Other than maybe IE6 issues, it should be possible to use CSS to create a '100%' height element and use either margin or abs-coords to manipulate its position...
+        /**
+         * Attempt to determine the maximum height that the content area can fill without pushing the footer off the page.
+         * The new CSS layout means we don't need to use this function.
+         */
         getMaxContentHeight: function() {
+          //TODO: Other than maybe IE6 issues, it should be possible to use CSS to create a '100%' height element and use either margin or abs-coords to manipulate its position...
             var h_banner = $('#banner-container').outerHeight();
             var h_top = $('#content-top').outerHeight();
             var h_footer = $('#footer-container').outerHeight();

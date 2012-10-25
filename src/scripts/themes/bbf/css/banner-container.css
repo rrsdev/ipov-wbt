@@ -7,8 +7,9 @@ modify it under the terms of the Mozilla Public License v2 or higher.
 
 */
 #banner-container {
-    position: relative;
-    /* height:79px */
+	/* Because its a table-row layout the size will stretch to fit content. */
+    display: table-row;
+    height: 1px;
 }
 
 #banner-logo {

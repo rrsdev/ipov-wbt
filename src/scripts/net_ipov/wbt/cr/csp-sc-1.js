@@ -34,6 +34,8 @@ define(["jquery", "net_ipov/log", "net_ipov/pubsub", "./get", "net_ipov/csp/csp"
                 var cspId = null;
                 var isReady = false;
                 var _interval = null;
+                var vitems = [];	// the array of media items (object literal format) to load
+                var playerSize = [0,0];
 
                 var fnCspFromSiteCatalog = function (catalogXml, status, jqXHR) {
                     // Because we use our custom _G.xml() call we should be getting XML that has been parsed and wrapped by JQuery (we may want to look at other alternatives as it seems like its taking a bit longer than I'd like).
@@ -52,7 +54,6 @@ define(["jquery", "net_ipov/log", "net_ipov/pubsub", "./get", "net_ipov/csp/csp"
                         videoNames = [videoNames];	// make it into an array.
                     }
 
-                    var vitems = [];	// the array of media items (object literal format) to load
                     var maxVideoSize = [0,0];
                     $.each( videoNames, function (i, vidName) {
                         var vid = catalogXml.find('video[filename="' + vidName + '"]');
@@ -103,11 +104,13 @@ define(["jquery", "net_ipov/log", "net_ipov/pubsub", "./get", "net_ipov/csp/csp"
                     });
 
                     // Now we need to know the size of the <object> tag which has to take into account the max-video size + the 'chrome' of the player.
-                    var playerSize = [
-                          (showScripts) ? maxVideoSize[0] + 200 : maxVideoSize[0] + 2,
-                          maxVideoSize[1] + 24
-                      ];
-
+                   playerSize = [
+                       (showScripts) ? maxVideoSize[0] + 200 : maxVideoSize[0] + 2,
+                       maxVideoSize[1] + 24,
+                       maxVideoSize[0],
+                       maxVideoSize[1]
+                   ];
+                    /*
                     //FIXME: This should be a) something the theme might want to 'know about', and b) something that is 'undone' when the content is released...
                     // theme.size( { y: (playerSize[1] + 4) } );
                     if (window.__isIe6) {
@@ -115,6 +118,7 @@ define(["jquery", "net_ipov/log", "net_ipov/pubsub", "./get", "net_ipov/csp/csp"
                     } else {
                         $('#content-main').css('minHeight', (playerSize[1] + 4) + "px");
                     }
+                    */
 
                     // This uses the CSP1 module, which I made different from the content-renderer
                     cspId = CSP1( tmpId, vitems, maxVideoSize, playerSize, topic.id );
@@ -174,6 +178,8 @@ define(["jquery", "net_ipov/log", "net_ipov/pubsub", "./get", "net_ipov/csp/csp"
                 return {
                     id: cspId,
                     isReady: isReady,
+                    playerSize: playerSize,		// array containing recommended player width, height, and max video width, height
+                    vitems: vitems,
                     destroy: function(theme, wbt) {
                         if (_interval) clearInterval( _interval );
                         _pubsub.unsubscribe(hndl1);
