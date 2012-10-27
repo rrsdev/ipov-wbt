@@ -25,11 +25,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #content-container {
     display: table-row;
     height: auto;
+    position: relative;
 }
 
 #footer-container {
 	display: table-row;
     height: 1px;    /* Because its a table-row layout the size will stretch to fit content. */
+    position: relative;
 }
 
 /* Element added to contain 'accsibility' text (e.g. image caption).
@@ -77,14 +79,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
     font-size: 1px;
     line-height: 1px;
     margin-left: 20px;
+    background-color: #ffffff;
 }
 
 /** These are where the wbt-ctrls content goes. */
 #footer-content .controls-right, #banner-bottom .controls-right {
-    /** width: 140px;    Don't know why, but it wants extra px */
     height: 20px;
-    position: absolute;
-    right: 20px;
+    float: right;
 }
 
 .wbt-iframe {

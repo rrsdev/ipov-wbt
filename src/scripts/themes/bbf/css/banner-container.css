@@ -10,6 +10,8 @@ modify it under the terms of the Mozilla Public License v2 or higher.
 	/* Because its a table-row layout the size will stretch to fit content. */
     display: table-row;
     height: 1px;
+    position: relative;
+    z-index: 16001;
 }
 
 #banner-logo {
@@ -74,6 +76,7 @@ body #banner-content {
     font-size: 11px;
     background: url("../imgs/banner-bottom.png") repeat-x scroll 0 0;
     color: #252525;
+    border: 0 none #ffffff;
 }
 
 /* TODO: Consider adding 'x' image. */

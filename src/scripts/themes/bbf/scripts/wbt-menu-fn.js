@@ -11,7 +11,8 @@ modify it under the terms of the Mozilla Public License v2 or higher.
  *
  * @return Function( theme, wbt ) which builds the main site menu for the theme
  */
-define(["jquery", "net_ipov/pubsub", "text!themes/bbf/tmpl/site_menu.html"], function ($, _pubsub, tmplSiteMenu) {
+//
+define(["jquery", "net_ipov/pubsub", "text!themes/bbf/tmpl/site_menu.html", "jquery.bgiframe"], function ($, _pubsub, tmplSiteMenu) {
 	return function(theme, wbt) {
 
 		var eleMenuContainer = theme.find("#site-menu");
@@ -21,8 +22,15 @@ define(["jquery", "net_ipov/pubsub", "text!themes/bbf/tmpl/site_menu.html"], fun
 		// First things first, register and then render the main site menu template into the theme.
 		$.templates( { site_menu: tmplSiteMenu } );
 		var t_html = $.render['site_menu'](wbt.contentModel.root);
+
+		//var t_css = eleMenuContainer.css('display');
+		//eleMenuContainer.css('display', 'none');
+
+		//$('body').append( t_html );
 		var eleMenuItems = eleMenuContainer.find(".menu-items")
 			.first().html( t_html );
+
+		//eleMenuContainer.css('display', t_css);
 
 		var _menuIndicatorEles = {};
 
@@ -60,6 +68,8 @@ define(["jquery", "net_ipov/pubsub", "text!themes/bbf/tmpl/site_menu.html"], fun
 
 		// onclick handler for menu items.
 		var eleMenuCtnr = eleMenuContainer.find("#site-menu-container");
+		eleMenuCtnr.bgiframe();		// supposed to work in IE6, but getting knocked off track by something.
+
 		var mnuEntries = eleMenuCtnr.find(".main-menu-entry");
 		mnuEntries.click( function (evt) {
 			fnToggleMenu(evt);
@@ -74,6 +84,7 @@ define(["jquery", "net_ipov/pubsub", "text!themes/bbf/tmpl/site_menu.html"], fun
 			ele.children('div').removeClass().addClass( topic.statusAsPropString() );
 		});
 
+		/*
 		if (window.__isIe6) {
 			setTimeout(function(){
 				var maxWidth = 0;
@@ -89,10 +100,8 @@ define(["jquery", "net_ipov/pubsub", "text!themes/bbf/tmpl/site_menu.html"], fun
 				});
 				eleMenuContainer.css('width', (maxWidth + 56) + "px");
 			}, 50);
-		} else {
-			//eleMenuCtnr.css('display', 'none');
 		}
-
+		*/
 		var hndl = _pubsub.subscribe("net_ipov/Topic:statusChange", function (topic, status, oldStatus) {
 			var e = _menuIndicatorEles[topic.id];
 			if (e) {

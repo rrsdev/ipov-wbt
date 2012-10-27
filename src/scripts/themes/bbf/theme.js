@@ -249,6 +249,7 @@ define([
             overlayEle.css({
                 display: 'none'
             });
+
             _pubsub.publish("net_ipov/wbt/Theme:unblock", [this]);
         },
 
