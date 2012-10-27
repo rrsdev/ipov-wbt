@@ -55,6 +55,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #site-menu-container {
     position: absolute;
     visibility: hidden;
+    width: 440px;       /* Not super great, but if its not set it just collapses down. :(  */
     height: 0;
     overflow: hidden;
     top: 20px;
@@ -125,14 +126,17 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
     border-top: 0 none transparent;
 }
 
-#site-menu li.menu-item .main-menu-entry {
-    height: 26px;
+#site-menu li.menu-item .menu-entry-container {
     line-height: 24px;
     cursor: pointer;
     display: block;
     position: relative;
     padding-right: 40px;
     vertical-align: middle;
+}
+
+#site-menu li.menu-item .menu-entry-wrapper {
+    text-aligh: left;
 }
 
 #site-menu ul.menu-items ul.menu-items {
@@ -151,11 +155,18 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
     background-repeat: 0;
     background-position: -9px 0;
     overflow: hidden;
-    line-height: 2px;
     font-size: 2px;
 }
 
+.menu-item .menu-item-icon {
+	margin: 7px 4px 0 0;
+	float:left;
+}
 
+.menu-entry-title {
+    white-space: normal;
+    display: inline-block;
+}
 
 /** A topic that has child items */
 .menu-item-icon.menu-02.closed {}

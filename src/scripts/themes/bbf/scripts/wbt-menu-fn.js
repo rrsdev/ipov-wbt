@@ -70,11 +70,12 @@ define(["jquery", "net_ipov/pubsub", "text!themes/bbf/tmpl/site_menu.html", "jqu
 		var eleMenuCtnr = eleMenuContainer.find("#site-menu-container");
 		eleMenuCtnr.bgiframe();		// supposed to work in IE6, but getting knocked off track by something.
 
-		var mnuEntries = eleMenuCtnr.find(".main-menu-entry");
-		mnuEntries.click( function (evt) {
+		var mnuEntries = eleMenuCtnr.find(".menu-entry-container");
+		mnuEntries.find(".menu-entry-title").click( function (evt) {
 			fnToggleMenu(evt);
 			wbt.navigate( $(this).data("topicId") );
-		} ).find(".topic-progress-indicator").each(function (indx, ele) {
+		} );
+		mnuEntries.find(".topic-progress-indicator").each(function (indx, ele) {
 			// need to find the Topic based on the Id:
 			ele = $(ele);
 			var id = ele.parent().data("topicId");
@@ -84,24 +85,6 @@ define(["jquery", "net_ipov/pubsub", "text!themes/bbf/tmpl/site_menu.html", "jqu
 			ele.children('div').removeClass().addClass( topic.statusAsPropString() );
 		});
 
-		/*
-		if (window.__isIe6) {
-			setTimeout(function(){
-				var maxWidth = 0;
-				var tpc, w;
-				mnuEntries.each(function (i, ele) {
-					ele = $(ele);
-					tpc = wbt._topicFromId( ele.data("topicId") );
-					w = $(ele).width();
-					if (tpc.depth) {
-						w = w + (18 + tpc.depth);
-					}
-					maxWidth = Math.max(maxWidth, w);
-				});
-				eleMenuContainer.css('width', (maxWidth + 56) + "px");
-			}, 50);
-		}
-		*/
 		var hndl = _pubsub.subscribe("net_ipov/Topic:statusChange", function (topic, status, oldStatus) {
 			var e = _menuIndicatorEles[topic.id];
 			if (e) {

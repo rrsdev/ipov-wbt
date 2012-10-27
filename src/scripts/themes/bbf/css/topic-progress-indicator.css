@@ -1,4 +1,4 @@
-/* 
+/*
 Copyright (C) 2011 iPOV.net
 Author: Robert Sanders (dotperson@gmail.com)
 
@@ -30,6 +30,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 .ie6 .topic-progress-indicator {
     top: 4px;
+    right: 6px;
 }
 
 .topic-progress-indicator div {

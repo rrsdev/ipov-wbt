@@ -12,7 +12,7 @@
            }
        },
        {
-           "title": "Introduction",
+           "title": "Introduction, with some super long text because I want to text the wrapping logic that I think is missing",
            "id": "1b",
            "content": {
                "_type": "application/x-ipov-media-catalog",
