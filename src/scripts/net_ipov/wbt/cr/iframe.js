@@ -43,7 +43,8 @@ define(["jquery", "net_ipov/log", "net_ipov/pubsub"], function ($, _log, _pubsub
                         'name="' + tmpId + '" ' +
                         'class="wbt-iframe" ' +
                         'src="' + url + '" ' +
-                        'width="100%" height="100%"' +
+                        'width="100%" height="100%" ' +
+                        'frameborder="0" ' +
                         '></iframe>'
                 );
 
