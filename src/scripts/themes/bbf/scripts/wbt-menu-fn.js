@@ -67,15 +67,25 @@ define(["jquery", "net_ipov/pubsub", "text!themes/bbf/tmpl/site_menu.html", "jqu
 		var mnuEntries = eleMenuCtnr.find(".menu-entry-container");
 
 		// logic for clicking on the menu item.
+        var fnMenuItemAction = function (evt, ele) {
+    		fnToggleMenu(evt);
+    		wbt.navigate( $(ele).parent().parent().data("topicId") );
+        };
 		mnuEntries.find(".menu-entry-title").click( function (evt) {
-			fnToggleMenu(evt);
-			wbt.navigate( $(this).data("topicId") );
+			var ele = this;
+			fnMenuItemAction(evt, ele);
 		} );
 
 		// logic for clicking on the menu icon, for nested menus it should expand/collapse them
         mnuEntries.find(".menu-item-icon").click( function (evt) {
-        	//fnToggleMenu(evt);
-        	//wbt.navigate( $(this).data("topicId") );
+            var t = $(this);
+            if (t.hasClass('mi-icon-leaf')) {
+                var ele = this;
+    			fnMenuItemAction(evt, ele);
+            } else {
+            	// $(this).parent().parent().parent().class("item-menu-closed")
+            	//wbt.navigate( $(this).data("topicId") );
+            }
         } );
 
 		// logic for the progress indicator icon
