@@ -23,14 +23,8 @@ define(["jquery", "net_ipov/pubsub", "text!themes/bbf/tmpl/site_menu.html", "jqu
 		$.templates( { site_menu: tmplSiteMenu } );
 		var t_html = $.render['site_menu'](wbt.contentModel.root);
 
-		//var t_css = eleMenuContainer.css('display');
-		//eleMenuContainer.css('display', 'none');
-
-		//$('body').append( t_html );
 		var eleMenuItems = eleMenuContainer.find(".menu-items")
 			.first().html( t_html );
-
-		//eleMenuContainer.css('display', t_css);
 
 		var _menuIndicatorEles = {};
 
@@ -68,13 +62,23 @@ define(["jquery", "net_ipov/pubsub", "text!themes/bbf/tmpl/site_menu.html", "jqu
 
 		// onclick handler for menu items.
 		var eleMenuCtnr = eleMenuContainer.find("#site-menu-container");
-		eleMenuCtnr.bgiframe();		// supposed to work in IE6, but getting knocked off track by something.
+		eleMenuCtnr.bgiframe();		// Have to watch out for z-index bug or this won't work
 
 		var mnuEntries = eleMenuCtnr.find(".menu-entry-container");
+
+		// logic for clicking on the menu item.
 		mnuEntries.find(".menu-entry-title").click( function (evt) {
 			fnToggleMenu(evt);
 			wbt.navigate( $(this).data("topicId") );
 		} );
+
+		// logic for clicking on the menu icon, for nested menus it should expand/collapse them
+        mnuEntries.find(".menu-item-icon").click( function (evt) {
+        	//fnToggleMenu(evt);
+        	//wbt.navigate( $(this).data("topicId") );
+        } );
+
+		// logic for the progress indicator icon
 		mnuEntries.find(".topic-progress-indicator").each(function (indx, ele) {
 			// need to find the Topic based on the Id:
 			ele = $(ele);
