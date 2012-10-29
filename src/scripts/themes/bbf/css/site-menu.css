@@ -1,20 +1,10 @@
 /*
-Copyright (C) 2011 iPOV.net
-Author: Robert Sanders (dotperson@gmail.com)
+Copyright (C) 2011-2012 iPOV.net
+Author: Robert Sanders (robert.sanders@ipov.net)
 
 This program is free software; you can redistribute it and/or
-modify it under the terms of the GNU General Public License
-as published by the Free Software Foundation; either version 2
-of the License, or (at your option) any later version.
+modify it under the terms of the Mozilla Public License v2 or higher.
 
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program; if not, write to the Free Software
-Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 /*
  * This is the main site-wide menu, in this case a drop-down style, although for Siemens it does not automatically close, you have to click a small 'x' icon in the menu.
@@ -37,19 +27,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 .menu-closed #site-menu-title.hover {
     color: #333333;
-}
-
-/** This is the default position for the main menu. */
-.menu-item-icon.menu-01 {
-    background-position: 0 0;
-}
-
-.menu-closed #site-menu-title.hover .menu-item-icon.menu-01 {
-    background-position: 0 0;
-}
-
-.menu-open #site-menu-title .menu-item-icon.menu-01 {
-    background-position: 0 -9px;
 }
 
 #site-menu-container {
@@ -94,9 +71,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
     z-index: 100;
     width: 20px;
     height: 20px;
-    border-left: 2px solid #252525;
-    border-bottom: 2px solid #252525;
-    background: #252525 url("../imgs/close-x.gif") no-repeat top right;
+    border-left: 2px solid #3E3E3E;
+    border-bottom: 2px solid #3E3E3E;
+    background: #252525 url("../imgs/close-x.gif") no-repeat 50% 50%;
+    cursor: pointer;
 }
 
 
@@ -151,13 +129,40 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
     margin: 0 4px 0 0;
     border: 0 none;
     padding: 0;
-    background-image: url("../imgs/menu_icons_01_sprite.gif");
+    background-image: url("../imgs/menu_icons_sprite_01.gif");      /* top row is closed, bottom row is open */
     background-repeat: 0;
-    background-position: -9px 0;
     overflow: hidden;
     font-size: 2px;
 }
 
+
+/** gray menu item, This is the default position for the main menu. */
+.menu-item-icon.mi-icon-root,
+#site-menu-title .menu-item-icon,
+.menu-closed #site-menu-title.hover .menu-item-icon {
+    background-position: 0 0;
+}
+
+.menu-item-icon.mi-icon-root.icon-open,
+.menu-open #site-menu-title .menu-item-icon {
+    background-position: 0 -9px;
+}
+
+/** A topic that has child items */
+.menu-item-icon.mi-icon-branch {
+	background-position: -9px 0;
+}
+
+.menu-item-icon.mi-icon-branch.icon-open {
+    background-position: -9px -9px;
+}
+
+/** A topic that has no children */
+.menu-item-icon.mi-icon-leaf {
+	background-position: -36px 0;
+}
+
+/** Define the positioning within the main site menu */
 .menu-item .menu-item-icon {
 	margin: 7px 4px 0 0;
 	float:left;
@@ -167,13 +172,3 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
     white-space: normal;
     display: inline-block;
 }
-
-/** A topic that has child items */
-.menu-item-icon.menu-02.closed {}
-
-.menu-item-icon.menu-02.open {}
-
-/** A topic that has no children */
-.menu-item-icon.menu-03.closed {}
-
-.menu-item-icon.menu-03.open {}
