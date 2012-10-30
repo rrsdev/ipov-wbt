@@ -13,9 +13,13 @@ modify it under the terms of the Mozilla Public License v2 or higher.
  */
 //
 define(["jquery", "net_ipov/pubsub", "text!themes/bbf/tmpl/site_menu.html", "jquery.bgiframe"], function ($, _pubsub, tmplSiteMenu) {
+    /**
+     * @param theme The jQuery object representing the theme's DOM
+     * @param wbt   The WBT javascript controller object
+     */
 	return function(theme, wbt) {
 
-		var eleMenuContainer = theme.find("#site-menu");
+	    var eleMenuContainer = theme.find("#site-menu");
 		var eleMenuTitle = theme.find("#site-menu-title");
 		var isMenuOpen = false;		// state of the menu item (pulled in via closures)
 
@@ -43,7 +47,7 @@ define(["jquery", "net_ipov/pubsub", "text!themes/bbf/tmpl/site_menu.html", "jqu
 		});
 
 		// Function to toggle the menu open/close
-		var fnToggleMenu = function (evt) {
+		var fnToggleMenu = function () {
 			isMenuOpen = !isMenuOpen;
 			if (isMenuOpen) {
 				eleMenuContainer.removeClass("menu-closed").addClass("menu-open");
@@ -67,24 +71,34 @@ define(["jquery", "net_ipov/pubsub", "text!themes/bbf/tmpl/site_menu.html", "jqu
 		var mnuEntries = eleMenuCtnr.find(".menu-entry-container");
 
 		// logic for clicking on the menu item.
-        var fnMenuItemAction = function (evt, ele) {
-    		fnToggleMenu(evt);
+        var fnMenuItemAction = function (ele) {
+    		fnToggleMenu();
     		wbt.navigate( $(ele).parent().parent().data("topicId") );
         };
-		mnuEntries.find(".menu-entry-title").click( function (evt) {
+		mnuEntries.on("click", ".menu-entry-title", function (evt) {
 			var ele = this;
-			fnMenuItemAction(evt, ele);
+			fnMenuItemAction(ele);
 		} );
 
+		var fnToggleSubMenu = function (mnuItem) {
+		    if (mnuItem.hasClass("menu-open")) {
+		        mnuItem.removeClass("menu-open").addClass("menu-closed");
+		        mnuItem.find(".menu-item-icon").first().removeClass("icon-open").addClass("icon-closed");
+		    } else {
+		        mnuItem.removeClass("menu-closed").addClass("menu-open");
+		        mnuItem.find(".menu-item-icon").first().removeClass("icon-closed").addClass("icon-open");
+		    }
+		};
+
 		// logic for clicking on the menu icon, for nested menus it should expand/collapse them
-        mnuEntries.find(".menu-item-icon").click( function (evt) {
+        mnuEntries.on("click", ".menu-item-icon", function (evt) {
             var t = $(this);
             if (t.hasClass('mi-icon-leaf')) {
                 var ele = this;
-    			fnMenuItemAction(evt, ele);
+    			fnMenuItemAction(ele);
             } else {
-            	// $(this).parent().parent().parent().class("item-menu-closed")
-            	//wbt.navigate( $(this).data("topicId") );
+            	var mnuContainer = t.parent().parent().parent();
+            	fnToggleSubMenu(mnuContainer);
             }
         } );
 
@@ -111,12 +125,22 @@ define(["jquery", "net_ipov/pubsub", "text!themes/bbf/tmpl/site_menu.html", "jqu
 		 * This is the "Widget Function" return - its created when the widget is setup (above) and contains a function .destroy() which removes the 'widget' from the page.
 		 */
 		return {
+
+			/**
+			 * Is the site-level menu currently in an 'open' state or not (boolean).
+			 */
+		    isOpen: function() {
+		    	return isMenuOpen;
+			},
+
+			toggleMenu: fnToggleMenu,
+
 			destroy: function () {
-				try {
-					_pubsub.unsubscribe(hndl);
-					eleMenuContainer.empty();
-				} catch (ex) {}
-			}
-		};
+    			try {
+    				_pubsub.unsubscribe(hndl);
+    				eleMenuContainer.empty();
+    			} catch (ex) {}
+    		}
+    	};
 	};
 });

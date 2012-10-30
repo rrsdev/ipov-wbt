@@ -117,8 +117,13 @@ modify it under the terms of the Mozilla Public License v2 or higher.
     text-aligh: left;
 }
 
-#site-menu ul.menu-items ul.menu-items {
+#site-menu .menu-item > ul.menu-items {
     padding-left: 16px;
+    display: none;      /* Default to closed. */
+}
+
+#site-menu .menu-item.menu-open > ul.menu-items {
+    display: block;
 }
 
 /** These are the triangular style icons used indicate active menus or links. */
